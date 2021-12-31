@@ -1,0 +1,210 @@
+## justView workspace
+   ~/code/jt-pubsub/infrastructure/projects/jt-pubsub  terraform apply -var-file=./namespace/justView.tfvars                                                                                                                             ✔  justview   11:05:39  
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+ <= read (data resources)
+
+Terraform will perform the following actions:
+
+  # data.aws_sqs_queue.queue will be read during apply
+  # (config refers to values not yet known)
+ <= data "aws_sqs_queue" "queue"  {
+      + arn  = (known after apply)
+      + id   = (known after apply)
+      + name = "just-view-queue"
+      + tags = (known after apply)
+      + url  = (known after apply)
+    }
+
+  # module.queue.aws_sqs_queue.this will be created
+  + resource "aws_sqs_queue" "this" {
+      + arn                               = (known after apply)
+      + content_based_deduplication       = false
+      + deduplication_scope               = (known after apply)
+      + delay_seconds                     = 0
+      + fifo_queue                        = false
+      + fifo_throughput_limit             = (known after apply)
+      + id                                = (known after apply)
+      + kms_data_key_reuse_period_seconds = (known after apply)
+      + max_message_size                  = 262144
+      + message_retention_seconds         = 345600
+      + name                              = "just-view-queue"
+      + name_prefix                       = (known after apply)
+      + policy                            = (known after apply)
+      + receive_wait_time_seconds         = 0
+      + tags_all                          = {
+          + "Environment" = "staging"
+          + "Project"     = "justView"
+        }
+      + url                               = (known after apply)
+      + visibility_timeout_seconds        = 30
+    }
+
+  # module.topic.aws_sns_topic.this will be created
+  + resource "aws_sns_topic" "this" {
+      + arn                         = (known after apply)
+      + content_based_deduplication = false
+      + fifo_topic                  = false
+      + id                          = (known after apply)
+      + name                        = "just-view-topic"
+      + name_prefix                 = (known after apply)
+      + owner                       = (known after apply)
+      + policy                      = (known after apply)
+      + tags_all                    = {
+          + "Environment" = "staging"
+          + "Project"     = "justView"
+        }
+    }
+
+  # module.topic.aws_sns_topic_subscription.this will be created
+  + resource "aws_sns_topic_subscription" "this" {
+      + arn                             = (known after apply)
+      + confirmation_timeout_in_minutes = 1
+      + confirmation_was_authenticated  = (known after apply)
+      + endpoint                        = (known after apply)
+      + endpoint_auto_confirms          = false
+      + id                              = (known after apply)
+      + owner_id                        = (known after apply)
+      + pending_confirmation            = (known after apply)
+      + protocol                        = "sqs"
+      + raw_message_delivery            = false
+      + topic_arn                       = (known after apply)
+    }
+
+Plan: 3 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions in workspace "justview"?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+module.queue.aws_sqs_queue.this: Creating...
+module.queue.aws_sqs_queue.this: Still creating... [10s elapsed]
+module.queue.aws_sqs_queue.this: Still creating... [20s elapsed]
+module.queue.aws_sqs_queue.this: Creation complete after 25s [id=http://localhost:4566/000000000000/just-view-queue]
+data.aws_sqs_queue.queue: Reading...
+module.topic.aws_sns_topic.this: Creating...
+data.aws_sqs_queue.queue: Read complete after 1s [id=http://localhost:4566/000000000000/just-view-queue]
+module.topic.aws_sns_topic.this: Creation complete after 1s [id=arn:aws:sns:us-east-1:000000000000:just-view-topic]
+module.topic.aws_sns_topic_subscription.this: Creating...
+module.topic.aws_sns_topic_subscription.this: Creation complete after 0s [id=arn:aws:sns:us-east-1:000000000000:just-view-topic:fd915efc-d17f-4ff5-9754-a635bbf1dd35]
+
+Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
+
+## JustTrack workspace
+    ~/code/jt-pubsub/infrastructure/projects/jt-pubsub  terraform apply -var-file=./namespace/justTrack.tfvars                                                                                                                           ✔  justTrack   11:13:12  
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+ <= read (data resources)
+
+Terraform will perform the following actions:
+
+  # data.aws_sqs_queue.queue will be read during apply
+  # (config refers to values not yet known)
+ <= data "aws_sqs_queue" "queue"  {
+      + arn  = (known after apply)
+      + id   = (known after apply)
+      + name = "just-track-queue"
+      + tags = (known after apply)
+      + url  = (known after apply)
+    }
+
+  # module.queue.aws_sqs_queue.this will be created
+  + resource "aws_sqs_queue" "this" {
+      + arn                               = (known after apply)
+      + content_based_deduplication       = false
+      + deduplication_scope               = (known after apply)
+      + delay_seconds                     = 0
+      + fifo_queue                        = false
+      + fifo_throughput_limit             = (known after apply)
+      + id                                = (known after apply)
+      + kms_data_key_reuse_period_seconds = (known after apply)
+      + max_message_size                  = 262144
+      + message_retention_seconds         = 345600
+      + name                              = "just-track-queue"
+      + name_prefix                       = (known after apply)
+      + policy                            = (known after apply)
+      + receive_wait_time_seconds         = 0
+      + tags_all                          = {
+          + "Environment" = "live"
+          + "Project"     = "justTrack"
+        }
+      + url                               = (known after apply)
+      + visibility_timeout_seconds        = 30
+    }
+
+  # module.topic.aws_sns_topic.this will be created
+  + resource "aws_sns_topic" "this" {
+      + arn                         = (known after apply)
+      + content_based_deduplication = false
+      + fifo_topic                  = false
+      + id                          = (known after apply)
+      + name                        = "just-track-topic"
+      + name_prefix                 = (known after apply)
+      + owner                       = (known after apply)
+      + policy                      = (known after apply)
+      + tags_all                    = {
+          + "Environment" = "live"
+          + "Project"     = "justTrack"
+        }
+    }
+
+  # module.topic.aws_sns_topic_subscription.this will be created
+  + resource "aws_sns_topic_subscription" "this" {
+      + arn                             = (known after apply)
+      + confirmation_timeout_in_minutes = 1
+      + confirmation_was_authenticated  = (known after apply)
+      + endpoint                        = (known after apply)
+      + endpoint_auto_confirms          = false
+      + id                              = (known after apply)
+      + owner_id                        = (known after apply)
+      + pending_confirmation            = (known after apply)
+      + protocol                        = "sqs"
+      + raw_message_delivery            = false
+      + topic_arn                       = (known after apply)
+    }
+
+Plan: 3 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + queue = {
+      + queue_arn = (known after apply)
+    }
+  + topic = {
+      + subscription_id = (known after apply)
+      + topic_arn       = (known after apply)
+      + topic_id        = (known after apply)
+    }
+
+Do you want to perform these actions in workspace "justTrack"?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+module.queue.aws_sqs_queue.this: Creating...
+module.queue.aws_sqs_queue.this: Still creating... [10s elapsed]
+module.queue.aws_sqs_queue.this: Still creating... [20s elapsed]
+module.queue.aws_sqs_queue.this: Creation complete after 25s [id=http://localhost:4566/000000000000/just-track-queue]
+data.aws_sqs_queue.queue: Reading...
+module.topic.aws_sns_topic.this: Creating...
+data.aws_sqs_queue.queue: Read complete after 0s [id=http://localhost:4566/000000000000/just-track-queue]
+module.topic.aws_sns_topic.this: Creation complete after 0s [id=arn:aws:sns:us-east-1:000000000000:just-track-topic]
+module.topic.aws_sns_topic_subscription.this: Creating...
+module.topic.aws_sns_topic_subscription.this: Creation complete after 0s [id=arn:aws:sns:us-east-1:000000000000:just-track-topic:7f3d0a13-cd56-4bbb-98e5-feec46608c25]
+
+Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+queue = {
+  "queue_arn" = "arn:aws:sqs:us-east-1:000000000000:just-track-queue"
+}
+topic = {
+  "subscription_id" = "arn:aws:sns:us-east-1:000000000000:just-track-topic:7f3d0a13-cd56-4bbb-98e5-feec46608c25"
+  "topic_arn" = "arn:aws:sns:us-east-1:000000000000:just-track-topic"
+  "topic_id" = "arn:aws:sns:us-east-1:000000000000:just-track-topic"
+}
